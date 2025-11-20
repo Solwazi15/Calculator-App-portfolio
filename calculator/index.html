@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="service-worker" href="service-worker.js">
+</head>
+<style>
+.form-row{
+    width:250px;
+    height:400px;
+    display:block;
+    flex-direction:column;
+    margin:200px;
+    padding:auto;
+    background-color:#273E47;
+    object-fit:cover;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius:50px;
+    position:relative;
+    padding-top:50px;
+    padding-bottom:0;
+    padding-right:30px;
+    padding-left:30px;
+    justify-content:center;
+}
+.display{
+    width:100%;
+    height:50%;
+    background-color:#273E47;
+    border-radius:10px;
+    color:white;
+    text-align:right;
+    font-size:30px;
+    padding-top:40px;;
+
+}
+.display:focus{
+    outline:none;
+}
+.container{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+}
+.button{
+    width:50px;
+    height:50px;
+    background-color:#D8973C;
+    border-radius:20px;
+    font-weight:bold;
+    color:white;
+    font-size:20px;
+    margin:4px;
+    transition:3s ease-in-out;
+    cursor:pointer;
+}
+.button2{
+    width:50px;
+    height:50px;
+    background-color:#5a4a34;
+    border-radius:20px;
+    font-weight:bold;
+    color:red;
+    font-size:20px;
+    margin:4px;
+    transition:3s ease-in-out;
+
+}
+button:hover{
+    background-color:#F2C94C;
+    color:black;
+
+}
+.button3{
+    width:109px;
+    height:50px;
+    background-color:#D8973C;
+    border-radius:20px;
+    font-weight:bold;
+    color:steelblue;
+    font-size:20px;
+    margin:4px;
+    transition:3s ease-in-out;
+
+}
+</style> 
+<body>
+    <div class="form-row">
+        <div class="container">
+            
+            <input class="display" type="text" id="text" placeholder="0" aria-readonly=" ">
+            <div>
+                <button class="button2" onclick="clearDisplay('C')" for="clear" id="display" readonly="">C</button>
+                <button class="button" onclick="appendToDisplay('()')"    for="parentheses" id="parentheses">()</button>
+                <button class="button" onclick="appendToDisplay('/100')"  for="pecent" id="pecent">%</button>
+                <button class="button" onclick="appendToDisplay('/')"  for="divide" id="divide">÷</button>
+                <div>
+                    <button class="button" onclick="appendToDisplay('7')"  for="seven" id="seven">7</button>
+                    <button class="button" onclick="appendToDisplay('8')"  for="eight" id="eight">8</button>
+                    <button class="button" onclick="appendToDisplay('9')"  for="nine" id="nine">9</button>
+                    <button class="button" onclick="appendToDisplay('*')"  for="multiply" id="multiply">×</button>
+                    <div>
+                        <button class="button" onclick="appendToDisplay('4')"  for="four" id="four">4</button>
+                        <button class="button" onclick="appendToDisplay('5')"  for="five" id="five">5</button>
+                        <button class="button" onclick="appendToDisplay('6')"  for="six" id="six">6</button>
+                        <button class="button" onclick="appendToDisplay('-')"  for="minus" id="minus">-</button>
+                        <div>
+                            <button class="button" onclick="appendToDisplay('1')"  for="one" id="one">1</button>
+                            <button class="button" onclick="appendToDisplay('2')"  for="two" id="two">2</button>
+                            <button class="button" onclick="appendToDisplay('3')"  for="three" id="three">3</button>
+                            <button class="button" onclick="appendToDisplay('+')"  for="addition" id="addition">+</button>
+                            <div>
+                                <button class="button" onclick="appendToDisplay('-0')"  for="negative" id="negative">+/-</button>
+                                <button class="button" onclick="appendToDisplay('0')"  for="zero" id="zero">0</button>
+                                <button class="button3" onclick="calculate()"  for="equal" id="equal">=</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <script src="calculator.js"></script>
+    <script>
+        if('serviceworker' in navigator){
+            navigator.serviceworker.register('service-worker.js');
+            
+        }
+    </script>
+</body>
+</html>
